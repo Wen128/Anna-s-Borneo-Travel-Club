@@ -19,6 +19,8 @@ const columns = [
   { data: 'LocationID', title: 'Location ID' },
   { data: 'Description', title: 'Description' },
   { data: 'EntryFees', title: 'Entry Fees' },
+  { data: 'Category', title: 'Category' },
+  { data: 'NumberofReservation', title: 'Number of Reservation' },
   { data: null, render: '#actions', title: 'Actions' }, // Add this column for actions
 ];
 
@@ -176,14 +178,20 @@ const cancelDelete = () => {
           <label for="name">Name</label>
           <input v-model="editAttraction.Name" id="name" type="text" required />
 
-          <label for="address">Location ID</label>
+          <label for="locationID">Location ID</label>
           <input v-model="editAttraction.LocationID" id="locationID" type="text" required />
 
-          <label for="membershipType">Description</label>
+          <label for="Description">Description</label>
           <input v-model="editAttraction.Description" id="Description" type="text" required />
 
-          <label for="expirationDate">Entry Fees</label>
+          <label for="EntryFees">Entry Fees</label>
           <input v-model="editAttraction.EntryFees" id="EntryFees" type="text" />
+
+          <label for="Category">Category</label>
+          <input v-model="editAttraction.Category" id="Category" type="text" />
+
+          <label for="NumberOfReservation">Number of Reservation</label>
+          <input v-model="editAttraction.NumberofReservation" id="NumberOfReservation" type="text" />
 
 
           <div class="flex justify-between">

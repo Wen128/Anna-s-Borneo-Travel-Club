@@ -23,33 +23,36 @@
 
         <h1 class="text-xl font-bold text-blue-700 mt-10">Top Reserved Attractions</h1>
 
-        <div class="grid grid-cols-6 w-full mb-1 mt-3 font-semibold text-gray-500">
+        <div class="grid grid-cols-7 w-full mb-1 mt-3 font-semibold text-gray-500">
             <h1 class="col-span-2 px-3">Name</h1>
             <h1 class="col-span-3">Description</h1>
-            <h1>Entry Fee</h1>
+            <h1>Entry Fees</h1>
+            <h1>Number of Reservation</h1>
         </div>
 
-        <div v-for="attraction in topAttractions" class="grid grid-cols-6 w-full h-20 bg-white mb-4 content-center px-3 shadow-lg shadow-gray-100 rounded-md">
+        <div v-for="attraction in topAttractions" class="grid grid-cols-7 w-full h-20 bg-white mb-4 content-center px-3 shadow-lg shadow-gray-100 rounded-md">
             <div class="col-span-2 flex items-center">
-                <img :src=attraction.img :alt=attraction.name  class="w-20 h-16 object-cover rounded-lg mr-4"/>
                 <div class="flex flex-col">
                 <h1 class="font-semibold">
-                    {{ attraction.name }}
-                </h1>
-                <h1 class="text-sm text-gray-500">
-                    {{ attraction.location }}
+                    {{ attraction.Name }}
                 </h1>
 
                 </div>
             </div>
             
             <div class="col-span-3 flex items-center">
-                {{ attraction.description }}
+                {{ attraction.Description }}
             </div>
 
             <div class="flex items-center">
-                {{ attraction.entryFee }}
+                RM{{ attraction.EntryFees }}
             </div>
+
+            <div class="flex items-center">
+                {{ attraction.NumberofReservation }}
+            </div>
+
+
         </div>
 
         <div class="w-1/3">
@@ -79,42 +82,7 @@ Chart.register(...registerables);
     const totalPremium = ref(0);
 
 
-    const topAttractions = ref([{
-        img: '/img/jonkerStreet.jpg',
-        name: 'Jonker Street',
-        location: 'Melaka',
-        description: 'this is a street ',
-        entryFee: 0
-    },
-    {
-        img: '/img/jonkerStreet.jpg',
-        name: 'Jonker Street',
-        location: 'Melaka',
-        description: 'this is a street',
-        entryFee: 0
-    },
-    {
-        img: '/img/jonkerStreet.jpg',
-        name: 'Jonker Street',
-        location: 'Melaka',
-        description: 'this is a street',
-        entryFee: 0
-    },
-    {
-        img: '/img/jonkerStreet.jpg',
-        name: 'Jonker Street',
-        location: 'Melaka',
-        description: 'this is a street',
-        entryFee: 0
-    },
-    {
-        img: '/img/jonkerStreet.jpg',
-        name: 'Jonker Street',
-        location: 'Melaka',
-        description: 'this is a street',
-        entryFee: 0
-    },
-    ])
+    const topAttractions = ref([])
 
     const getTotalMembers = async () => {
         await axios.get('http://localhost:3000/members')
@@ -161,6 +129,22 @@ Chart.register(...registerables);
         });
     };
 
+    const getTopAttraction = () => {
+    axios.get('http://localhost:3000/attractions')
+        .then((response) => {
+            const data = response.data;
+            // Sort the data by NumberOfReservation in descending order and take the top 5
+            topAttractions.value = data
+                .sort((a, b) => b.NumberofReservation - a.NumberofReservation)
+                .slice(0, 5);
+            console.log(topAttractions.value); // Output the top 5 attractions
+        })
+        .catch((error) => {
+            console.error('Error fetching attractions:', error);
+        });
+};
+
+
     const renderPieChart = () => {
       const ctx = document.getElementById('membershipPieChart').getContext('2d');
       new Chart(ctx, {
@@ -195,5 +179,7 @@ Chart.register(...registerables);
         getTotalEmployees();
         getTotalReservation();
         getTotalRevenue();
+
+        getTopAttraction();
     })
 </script>

@@ -186,10 +186,10 @@ const cancelDelete = () => {
           <input v-model="editReservation.AttractionID" id="AttractionID" type="text" required />
 
           <label for="Date">Date</label>
-          <input v-model="editReservation.Date" id="Date" type="text" required />
+          <input v-model="editReservation.Date" id="Date" type="date" required />
 
           <label for="Time">Time</label>
-          <input v-model="editReservation.Time" id="Time" type="text" required />
+          <input v-model="editReservation.Time" id="Time" type="time" required />
 
           <label for="NumberOfVisitors">Number Of Visitors</label>
           <input v-model="editReservation.NumberOfVisitors" id="NumberOfVisitors" type="text" required />

@@ -20,9 +20,9 @@ router.get('/', (req, res) => {
 
 // Route to add an attraction
 router.post('/', (req, res) => {
-    const { Name, LocationID, Description, EntryFees } = req.body;
-    const query = 'INSERT INTO Attraction (Name, LocationID,  Description, EntryFees) VALUES (?, ?, ?, ?)';
-    db.query(query, [Name, LocationID, Description, EntryFees], (err, results) => {
+    const { Name, LocationID, Description, EntryFees, Category, NumberofReservation } = req.body;
+    const query = 'INSERT INTO Attraction (Name, LocationID,  Description, EntryFees, Category, NumberofReservation) VALUES (? ,? ,?, ?, ?, ?)';
+    db.query(query, [Name, LocationID, Description, EntryFees, Category, NumberofReservation], (err, results) => {
       if (err) {
         console.error(err);
         res.status(500).send('Failed to add attraction.');
@@ -36,17 +36,17 @@ router.post('/', (req, res) => {
 // Route to update a attraction
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { Name, LocationID, Description, EntryFees } = req.body;
+    const { Name, LocationID, Description, EntryFees, Category, NumberofReservation } = req.body;
   
     const query = `
       UPDATE Attraction 
-      SET Name = ?, LocationID = ?, Description = ?, EntryFees = ?
+      SET Name = ?, LocationID = ?, Description = ?, EntryFees = ?, Category = ?, NumberofReservation = ?
       WHERE AttractionID = ?
     `;
   
     db.query(
       query,
-      [ Name, LocationID, Description, EntryFees, id],
+      [ Name, LocationID, Description, EntryFees, Category, NumberofReservation, id],
       (err, results) => {
         if (err) {
           console.error(err);
