@@ -51,7 +51,7 @@ const edit = ref(false);
 // Fetch data from the API when the component is mounted
 onMounted(() => {
   axios
-    .get('http://localhost:3000/reservations') // Update with your actual API endpoint
+    .get('https://anna-s-borneo-travel-club.onrender.com/reservations') // Update with your actual API endpoint
     .then((response) => {
       data.value = response.data; // Update the data with the API response
       console.log(data.value);
@@ -65,7 +65,7 @@ onMounted(() => {
 const addReservation = () => {
   console.log(editReservation.value); // Log the object directly for debugging
   axios
-    .post('http://localhost:3000/reservations', editReservation.value) // No need to stringify
+    .post('https://anna-s-borneo-travel-club.onrender.com/reservations', editReservation.value) // No need to stringify
     .then((response) => {
       console.log(response);
       data.value.push(editReservation.value);
@@ -80,7 +80,7 @@ const addReservation = () => {
 // Function to update an existing reservation (for PUT request)
 const updateReservation = () => {
   axios
-    .put(`http://localhost:3000/reservations/${selectedReservation.value}`, editReservation.value)
+    .put(`https://anna-s-borneo-travel-club.onrender.com/reservations/${selectedReservation.value}`, editReservation.value)
     .then(() => {
       const index = data.value.findIndex(
         (reservation) => reservation.ReservationID === selectedReservation.value
@@ -97,7 +97,7 @@ const updateReservation = () => {
 // Function to delete reservation (for DELETE request)
 const deleteReservation = () => {
   axios
-    .delete(`http://localhost:3000/reservations/${reservationToDelete.value}`)
+    .delete(`https://anna-s-borneo-travel-club.onrender.com/reservations/${reservationToDelete.value}`)
     .then(() => {
       data.value = data.value.filter((reservation) => reservation.ReservationID !== reservationToDelete.value);
       showDeleteConfirm.value = false;

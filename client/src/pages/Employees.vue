@@ -49,7 +49,7 @@ const edit = ref(false);
 // Fetch data from the API when the component is mounted
 onMounted(() => {
   axios
-    .get('http://localhost:3000/employees') // Update with your actual API endpoint
+    .get('https://anna-s-borneo-travel-club.onrender.com/employees') // Update with your actual API endpoint
     .then((response) => {
       data.value = response.data; // Update the data with the API response
       console.log(data.value);
@@ -63,7 +63,7 @@ onMounted(() => {
 const addEmployee = () => {
   console.log(editEmployee.value); // Log the object directly for debugging
   axios
-    .post('http://localhost:3000/employees', editEmployee.value) // No need to stringify
+    .post('https://anna-s-borneo-travel-club.onrender.com/employees', editEmployee.value) // No need to stringify
     .then((response) => {
       console.log(response);
       data.value.push(editEmployee.value);
@@ -78,7 +78,7 @@ const addEmployee = () => {
 // Function to update an existing employee (for PUT request)
 const updateEmployee = () => {
   axios
-    .put(`http://localhost:3000/employees/${selectedEmployee.value}`, editEmployee.value)
+    .put(`https://anna-s-borneo-travel-club.onrender.com/employees/${selectedEmployee.value}`, editEmployee.value)
     .then(() => {
       const index = data.value.findIndex(
         (employee) => employee.EmployeeID === selectedEmployee.value
@@ -95,7 +95,7 @@ const updateEmployee = () => {
 // Function to delete a employee (for DELETE request)
 const deleteEmployee = () => {
   axios
-    .delete(`http://localhost:3000/employees/${employeeToDelete.value}`)
+    .delete(`https://anna-s-borneo-travel-club.onrender.com/employees/${employeeToDelete.value}`)
     .then(() => {
       data.value = data.value.filter((employee) => employee.EmployeeID !== employeeToDelete.value);
       showDeleteConfirm.value = false;

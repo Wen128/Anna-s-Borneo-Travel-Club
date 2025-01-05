@@ -47,7 +47,7 @@ const edit = ref(false);
 // Fetch data from the API when the component is mounted
 onMounted(() => {
   axios
-    .get('http://localhost:3000/locations') // Update with your actual API endpoint
+    .get('https://anna-s-borneo-travel-club.onrender.com/locations') // Update with your actual API endpoint
     .then((response) => {
       data.value = response.data; // Update the data with the API response
       console.log(data.value);
@@ -61,7 +61,7 @@ onMounted(() => {
 const addLocation = () => {
   console.log(editLocation.value); // Log the object directly for debugging
   axios
-    .post('http://localhost:3000/locations', editLocation.value) // No need to stringify
+    .post('https://anna-s-borneo-travel-club.onrender.com/locations', editLocation.value) // No need to stringify
     .then((response) => {
       console.log(response);
       data.value.push(editLocation.value);
@@ -76,7 +76,7 @@ const addLocation = () => {
 // Function to update an existing location (for PUT request)
 const updateLocation = () => {
   axios
-    .put(`http://localhost:3000/locations/${selectedLocation.value}`, editLocation.value)
+    .put(`https://anna-s-borneo-travel-club.onrender.com/locations/${selectedLocation.value}`, editLocation.value)
     .then(() => {
       const index = data.value.findIndex(
         (location) => location.LocationID === selectedLocation.value
@@ -93,7 +93,7 @@ const updateLocation = () => {
 // Function to delete location (for DELETE request)
 const deleteLocation = () => {
   axios
-    .delete(`http://localhost:3000/locations/${locationToDelete.value}`)
+    .delete(`https://anna-s-borneo-travel-club.onrender.com/locations/${locationToDelete.value}`)
     .then(() => {
       data.value = data.value.filter((location) => location.LocationID !== locationToDelete.value);
       showDeleteConfirm.value = false;

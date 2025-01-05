@@ -50,7 +50,7 @@ const edit = ref(false);
 // Fetch data from the API when the component is mounted
 onMounted(() => {
   axios
-    .get('http://localhost:3000/members') // Update with your actual API endpoint
+    .get('https://anna-s-borneo-travel-club.onrender.com/members') // Update with your actual API endpoint
     .then((response) => {
       data.value = response.data; // Update the data with the API response
       console.log(data.value);
@@ -64,7 +64,7 @@ onMounted(() => {
 const addMember = () => {
   console.log(editMember.value); // Log the object directly for debugging
   axios
-    .post('http://localhost:3000/members', editMember.value) // No need to stringify
+    .post('https://anna-s-borneo-travel-club.onrender.com/members', editMember.value) // No need to stringify
     .then((response) => {
       console.log(response);
       data.value.push(editMember.value);
@@ -79,7 +79,7 @@ const addMember = () => {
 // Function to update an existing member (for PUT request)
 const updateMember = () => {
   axios
-    .put(`http://localhost:3000/members/${selectedMember.value}`, editMember.value)
+    .put(`https://anna-s-borneo-travel-club.onrender.com/members/${selectedMember.value}`, editMember.value)
     .then(() => {
       const index = data.value.findIndex(
         (member) => member.MemberID === selectedMember.value
@@ -96,7 +96,7 @@ const updateMember = () => {
 // Function to delete a member (for DELETE request)
 const deleteMember = () => {
   axios
-    .delete(`http://localhost:3000/members/${memberToDelete.value}`)
+    .delete(`https://anna-s-borneo-travel-club.onrender.com/members/${memberToDelete.value}`)
     .then(() => {
       data.value = data.value.filter((member) => member.MemberID !== memberToDelete.value);
       showDeleteConfirm.value = false;

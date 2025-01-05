@@ -50,7 +50,7 @@ const edit = ref(false);
 // Fetch data from the API when the component is mounted
 onMounted(() => {
   axios
-    .get('http://localhost:3000/attractions') // Update with your actual API endpoint
+    .get('https://anna-s-borneo-travel-club.onrender.com/attractions') // Update with your actual API endpoint
     .then((response) => {
       data.value = response.data; // Update the data with the API response
       console.log(data.value);
@@ -64,7 +64,7 @@ onMounted(() => {
 const addAttraction = () => {
   console.log(editAttraction.value); // Log the object directly for debugging
   axios
-    .post('http://localhost:3000/attractions', editAttraction.value) // No need to stringify
+    .post('https://anna-s-borneo-travel-club.onrender.com/attractions', editAttraction.value) // No need to stringify
     .then((response) => {
       console.log(response);
       data.value.push(editAttraction.value);
@@ -79,7 +79,7 @@ const addAttraction = () => {
 // Function to update an existing attraction (for PUT request)
 const updateAttraction = () => {
   axios
-    .put(`http://localhost:3000/attractions/${selectedAttraction.value}`, editAttraction.value)
+    .put(`https://anna-s-borneo-travel-club.onrender.com/attractions/${selectedAttraction.value}`, editAttraction.value)
     .then(() => {
       const index = data.value.findIndex(
         (attraction) => attraction.AttractionID === selectedAttraction.value
@@ -96,7 +96,7 @@ const updateAttraction = () => {
 // Function to delete attraction (for DELETE request)
 const deleteAttraction = () => {
   axios
-    .delete(`http://localhost:3000/attractions/${attractionToDelete.value}`)
+    .delete(`https://anna-s-borneo-travel-club.onrender.com/attractions/${attractionToDelete.value}`)
     .then(() => {
       data.value = data.value.filter((attraction) => attraction.AttractionID !== attractionToDelete.value);
       showDeleteConfirm.value = false;

@@ -85,7 +85,7 @@ Chart.register(...registerables);
     const topAttractions = ref([])
 
     const getTotalMembers = async () => {
-        await axios.get('http://localhost:3000/members')
+        await axios.get('https://anna-s-borneo-travel-club.onrender.com/members')
         .then(
             (response) => {
             totalMembers.value = response.data.length;
@@ -104,21 +104,21 @@ Chart.register(...registerables);
     }
 
     const getTotalEmployees = () => {
-        axios.get('http://localhost:3000/employees')
+        axios.get('https://anna-s-borneo-travel-club.onrender.com/employees')
         .then((response) => totalEmployees.value = response.data.length).catch((error) => {
             console.error('Error fetching data:', error);
         });
     }
 
     const getTotalReservation = () => {
-        axios.get('http://localhost:3000/reservations')
+        axios.get('https://anna-s-borneo-travel-club.onrender.com/reservations')
         .then((response) => totalReservations.value = response.data.length).catch((error) => {
             console.error('Error fetching data:', error);
         });
     }
 
     const getTotalRevenue = () => {
-        axios.get('http://localhost:3000/reservations').
+        axios.get('https://anna-s-borneo-travel-club.onrender.com/reservations').
         then((response) => {
             const data = response.data; // Assuming data.value contains an array of objects
             const totalCostSum = data.reduce((sum, item) => sum + (parseFloat(item.TotalCost) || 0), 0);
@@ -130,7 +130,7 @@ Chart.register(...registerables);
     };
 
     const getTopAttraction = () => {
-    axios.get('http://localhost:3000/attractions')
+    axios.get('https://anna-s-borneo-travel-club.onrender.com/attractions')
         .then((response) => {
             const data = response.data;
             // Sort the data by NumberOfReservation in descending order and take the top 5
